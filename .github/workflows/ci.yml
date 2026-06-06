@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # core module + each framework adapter (separate go.mod each)
+        module: ['.', 'gin', 'echo', 'chi', 'fiber']
+    name: build+test (${{ matrix.module }})
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: go vet / build / test
+        working-directory: ${{ matrix.module }}
+        run: |
+          go mod download
+          go vet ./...
+          go build ./...
+          go test ./... -race -count=1
