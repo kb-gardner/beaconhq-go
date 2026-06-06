@@ -7,4 +7,3 @@ require (
 	github.com/kb-gardner/beaconhq-go v0.1.0
 )
 
-replace github.com/kb-gardner/beaconhq-go => ../

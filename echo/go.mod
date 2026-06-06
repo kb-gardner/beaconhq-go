@@ -7,4 +7,3 @@ require (
 	github.com/labstack/echo/v4 v4.12.0
 )
 
-replace github.com/kb-gardner/beaconhq-go => ../
