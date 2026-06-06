@@ -21,7 +21,7 @@ jobs:
       - name: go vet / build / test
         working-directory: ${{ matrix.module }}
         run: |
-          go mod download
+          go mod tidy
           go vet ./...
           go build ./...
           go test ./... -race -count=1
